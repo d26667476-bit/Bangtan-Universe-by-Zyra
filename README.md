@@ -1,4 +1,4 @@
-# BTS---Bangtan-Sonyeondan
+# Bangtan-Universe-by-Zyra
 A scalable, data-driven web platform designed to aggregate, track, and visualize 13 years of media achievements, real-time streaming analytics, and community-driven content moderation frameworks.
 
 ## Website update notifications
@@ -7,11 +7,17 @@ The dashboard has an optional notification bell. Each visitor must open **Update
 
 ## Opening and sharing the website
 
-The site root opens the BTS Universe dashboard. The GitHub Pages deployment publishes the static site at `https://d26667476-bit.github.io/BTS---Bangtan-Sonyeondan/`. To enable it, open the repository's **Settings → Pages**, set **Build and deployment → Source** to **GitHub Actions**, and push changes to `main` (or run **Deploy website to GitHub Pages** from the Actions tab). After the workflow succeeds, share that URL; the Pages site is not live until then.
+The site root opens the BTS Universe dashboard. The GitHub Pages deployment publishes the static site at `https://d26667476-bit.github.io/Bangtan-Universe-by-Zyra/`. To enable it, open the repository's **Settings → Pages**, set **Build and deployment → Source** to **GitHub Actions**, and push changes to `main` (or run **Deploy website to GitHub Pages** from the Actions tab). After the workflow succeeds, share that URL; the Pages site is not live until then.
 
 The site also has an existing Firebase Hosting workflow. If Firebase is configured, its URL is `https://<FIREBASE_PROJECT_ID>.web.app/`; that workflow requires the Firebase secrets below. GitHub Pages provides the public static site without those secrets, while Firebase is required for the optional notification backend.
 
-The dashboard includes a sitemap, search metadata, and sharing previews. To request Google indexing, add the published site in [Google Search Console](https://search.google.com/search-console), verify ownership, and submit `https://d26667476-bit.github.io/BTS---Bangtan-Sonyeondan/sitemap.xml`. Search engines decide whether and where to show the site; no setup can guarantee a top result.
+The dashboard includes search metadata, structured data, and sharing previews. To help Google find it:
+
+1. Add `https://d26667476-bit.github.io/Bangtan-Universe-by-Zyra/` as a **URL prefix** property in [Google Search Console](https://search.google.com/search-console).
+2. Verify ownership using Google's **HTML tag** method. Add the exact verification meta tag Google provides inside the `<head>` of `index.html`, publish the change, then click **Verify**. Keep the tag in place.
+3. In Search Console, submit `https://d26667476-bit.github.io/Bangtan-Universe-by-Zyra/sitemap.xml` under **Sitemaps**. Use **URL inspection** to request indexing for the homepage and dashboard.
+
+Publishing metadata and submitting a sitemap help Google discover and understand the site, but indexing and search ranking are controlled by Google and are not guaranteed. It can take days or longer for a new or renamed site to appear for a particular search.
 
 ### One-time Firebase setup
 

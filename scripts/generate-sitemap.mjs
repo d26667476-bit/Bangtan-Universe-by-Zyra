@@ -1,7 +1,7 @@
 import { readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 
-const siteUrl = (process.env.SITE_URL || "https://d26667476-bit.github.io/BTS---Bangtan-Sonyeondan")
+const siteUrl = (process.env.SITE_URL || "https://d26667476-bit.github.io/Bangtan-Universe-by-Zyra")
     .replace(/\/+$/, "");
 const excludedDirectories = new Set([".git", ".github", "functions", "node_modules", "scripts"]);
 const htmlFiles = [];
