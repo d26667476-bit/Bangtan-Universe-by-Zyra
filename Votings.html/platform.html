@@ -101,6 +101,42 @@
                 link.textContent = "Here’s the official " + platform.name + " website ↗";
                 site.appendChild(link);
             }
+            if (app === "mnet-plus") {
+                const guide = document.createElement("section");
+                guide.className = "mnet-event-guide";
+
+                const heading = document.createElement("h2");
+                heading.textContent = "2026 MAMA Live Vote";
+                guide.appendChild(heading);
+
+                const date = document.createElement("p");
+                date.textContent = "Live voting date: November 20, 2026 (KST). Voting is available only during the live broadcast window announced by Mnet. This is a single live-voting window, not a daily voting cycle.";
+                guide.appendChild(date);
+
+                const instructionsHeading = document.createElement("h3");
+                instructionsHeading.textContent = "How to vote";
+                guide.appendChild(instructionsHeading);
+
+                const instructions = document.createElement("ol");
+                [
+                    "Open the Mnet Plus app and sign in before the live-voting window.",
+                    "When voting opens, tap the active 2026 MAMA Live Voting banner.",
+                    "In the Fans' Choice Male category, select BTS if BTS is listed as a nominee.",
+                    "Complete any other ballot selections required by the app, following the event's on-screen instructions.",
+                    "Submit your ballot and keep the app open through any in-app validation. Wait for confirmation that your vote was recorded."
+                ].forEach((text) => {
+                    const item = document.createElement("li");
+                    item.textContent = text;
+                    instructions.appendChild(item);
+                });
+                guide.appendChild(instructions);
+
+                const rules = document.createElement("p");
+                rules.textContent = "Follow the vote limits shown in Mnet Plus and use only methods allowed by the event rules. Confirm the live schedule and any social-voting instructions in the app or during the broadcast.";
+                guide.appendChild(rules);
+
+                motivation.insertAdjacentElement("afterend", guide);
+            }
         } else {
             title.textContent = "Platform Not Found";
             motivation.textContent = "Choose a voting platform from the Voting Updates page.";
