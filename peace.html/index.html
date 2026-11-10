@@ -127,6 +127,63 @@
             text-align: center;
         }
 
+        .abby-community-link {
+            color: #e9d5ff;
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .abby-community-link:hover,
+        .abby-community-link:focus-visible {
+            color: #fff;
+        }
+
+        .abby-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin: 24px 0;
+        }
+
+        .abby-gallery figure {
+            min-width: 0;
+            margin: 0;
+            border: 1px solid rgba(192, 132, 252, 0.22);
+            border-radius: 12px;
+            padding: 10px;
+            background: rgba(11, 7, 23, 0.8);
+        }
+
+        .abby-gallery figure:first-child {
+            grid-column: 1 / -1;
+            width: min(100%, 360px);
+            justify-self: center;
+        }
+
+        .abby-gallery img {
+            display: block;
+            width: 100%;
+            max-height: 360px;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .abby-gallery figcaption {
+            margin-top: 9px;
+            color: #cbd5e1;
+            font-size: 0.82rem;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .abby-gallery-note {
+            color: #e9d5ff !important;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
         .memorial-quote {
             margin: 24px 0 0;
             border-left: 3px solid #c084fc;
@@ -147,6 +204,16 @@
         @media (prefers-reduced-motion: reduce) {
             .falling-petals {
                 display: none;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .abby-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .abby-gallery figure:first-child {
+                grid-column: auto;
             }
         }
     </style>
@@ -221,6 +288,152 @@
                     <p><strong>A community united:</strong> Fans shared the hope that Jean was watching over ARMY from the purple clouds above.</p>
                     <blockquote class="memorial-quote">“We will love you and remember you for a long time, Jean. Borahae, with love forever.”</blockquote>
                     <p class="memorial-closing">Until we meet in another purple universe, Jean. Your care for ARMY will remain an eternal light in the purple ocean.</p>
+                </div>
+            </article>
+            <article class="card army-memory" aria-labelledby="abby-title">
+                <div class="army-memory-content">
+                    <h2 id="abby-title">In Loving Memory of Abby Elder</h2>
+                    <p><strong>“Count your Blessings, Not your Flaws”</strong></p>
+                    <p><strong>Full name:</strong> Abigail “Abby” Sue Elder<br>
+                        <strong>ARMY since:</strong> 2017; her favorite member was V<br>
+                        <strong>Lifespan:</strong> October 3, 2003 – January 16, 2024</p>
+                    <p>Abby was a talented, compassionate soul whose memory continues to travel the world through the “Abby’s Pebbles” project and the ARMY community.</p>
+
+                    <h3>Who was Abby?</h3>
+                    <p>Abby was a ballet dancer, pianist, archer, and gifted artist, with a clever sense of humor and a fierce love for her siblings. She worked at an elementary school and planned to begin paramedic training so she could help others. BTS’s music and messages of self-love brought her comfort and companionship.</p>
+
+                    <h3>Remembering Abby’s struggle</h3>
+                    <p>Abby died by suicide on January 16, 2024, at age 20. Her mother, Jamie Elder, shared that Abby could be deeply self-critical and that her struggles were not apparent to those around her. Abby’s story reminds us that someone can seem joyful while carrying pain privately, and that compassion, listening, and checking in matter.</p>
+
+                    <h3>The story behind “Abby’s Pebbles”</h3>
+                    <p>Abby dreamed of seeing BTS live. To help her spirit visit places she never got to see, her mother shared small blue howlite pebbles at her funeral and invited people to carry them on their travels. The idea grew into “Let’s get Abby to BTS concerts,” and ARMY around the world began taking the pebbles to concert stops and meaningful places.</p>
+                    <p>Fans share Abby’s journey through photos and handmade tributes, including cards, crocheted butterflies, stickers, and fan art. The project has become a heartfelt way to remember Abby and encourage conversations about mental health and suicide prevention.</p>
+
+                    <div class="abby-gallery" aria-label="Abby and Abby's Pebbles memorial photos">
+                        <figure>
+                            <img src="../assets/abby.jpg" alt="Abby Elder">
+                            <figcaption>Abby Elder</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../assets/abby%201.jpg" alt="Abby's blue pebbles and memorial cards">
+                            <figcaption>Abby’s Pebbles and cards created in her memory.</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../assets/abby%202.jpg" alt="An Abby's Pebbles card held at a BTS concert">
+                            <figcaption>An ARMY brings Abby’s tribute to a BTS concert.</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../assets/abby%203.jpg" alt="A pouch of Abby's Pebbles carried on a visit to a scenic place">
+                            <figcaption>Abby’s Pebbles carried along on a journey.</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../assets/abby%204.jpg" alt="A concert tribute about ARMY carrying Abby's pebbles to BTS shows">
+                            <figcaption>A tribute to the ARMY who take Abby’s pebbles with them to concerts.</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../assets/abby%205.jpg" alt="Blue pebbles and handmade cards prepared for Abby's Pebbles">
+                            <figcaption>Blue pebbles and cards shared by Abby’s community.</figcaption>
+                        </figure>
+                    </div>
+                    <p class="abby-gallery-note">The girl in the first photo is Abby; the other photos show ARMY carrying her pebbles to places she had never visited and to concerts.</p>
+                    <p>You can visit the <a class="abby-community-link" href="https://share.google/7wSZrSBiic4NQGaxJ" target="_blank" rel="noopener noreferrer">Abby’s Pebbles Facebook group</a> if you’d like to join. You can see ARMY taking Abby along to concerts and places she never got to visit. If you’re interested in getting Abby’s pebbles, her mom is active on Facebook and can share more details.</p>
+                    <p class="memorial-closing">If I ever get the chance to attend a BTS concert, I will make sure to take you with me, Abby.</p>
+                    <p class="memorial-closing">Until we meet in another purple universe, Abby. You’ll always have a place with ARMY.</p>
+                </div>
+            </article>
+            <article class="card army-memory" aria-labelledby="bui-dieu-kl-title">
+                <div class="army-memory-content">
+                    <h2 id="bui-dieu-kl-title">In Loving Memory of Bui Dieu KL</h2>
+                    <p><strong>“A Mother’s Promise Kept”</strong></p>
+                    <p><strong>Full name:</strong> Bui Dieu KL, often known as KL<br>
+                        <strong>Age:</strong> 15<br>
+                        <strong>From:</strong> Hanoi, Vietnam<br>
+                        <strong>Favorite member:</strong> Jungkook<br>
+                        <strong>Passed away:</strong> December 20, 2018</p>
+                    <p>KL was a bright high school student and devoted ARMY who found joy in BTS’s music, especially Jungkook’s performances. During a three-year battle with bone cancer, the hope of seeing BTS live gave her something to look forward to.</p>
+
+                    <h3>A dream her mother carried to Singapore</h3>
+                    <p>KL and her mother had secured tickets to see BTS in Singapore on January 19, 2019. KL passed away a month before the concert. Her mother still made the journey from Hanoi to Singapore, carrying KL’s portrait and concert ticket so she could honor the dream they had shared.</p>
+                    <img class="memorial-photo" src="../assets/bui%20dieu%20kl.jpg" alt="Bui Dieu KL pictured alongside BTS">
+                    <p class="memorial-photo-note">This image of KL and BTS was found online and is shared here in her memory.</p>
+                    <p>After the concert, KL’s mother wrote a heartfelt letter about bringing her daughter’s photograph to the show and fulfilling the promise they had made. She remembered how BTS—and Jungkook in particular—had brought KL happiness and strength during her illness.</p>
+
+                    <p><strong>Sources:</strong>
+                        <a class="abby-community-link" href="https://www.allkpop.com/article/2019/01/mother-attends-bts-concert-for-her-army-daughter-who-passed-away-from-cancer" target="_blank" rel="noopener noreferrer">allkpop</a>,
+                        <a class="abby-community-link" href="https://www.nst.com.my/lifestyle/groove/2019/01/454632/showbiz-mother-attends-bts-concert-honour-late-daughter" target="_blank" rel="noopener noreferrer">New Straits Times</a>,
+                        <a class="abby-community-link" href="https://www.koreaboo.com/news/bts-jungkook-15-year-old-fan-passed-away-concert/" target="_blank" rel="noopener noreferrer">Koreaboo</a>.
+                    </p>
+                    <p class="memorial-closing">Until we meet in another purple universe, KL. May your mother’s promise—and your love for BTS—be remembered with tenderness.</p>
+                </div>
+            </article>
+            <article class="card army-memory" aria-labelledby="gizem-title">
+                <div class="army-memory-content">
+                    <h2 id="gizem-title">In Loving Memory of Gizem</h2>
+                    <p><strong>“A Voice Carried from the Rubble”</strong></p>
+                    <p><strong>Name:</strong> Gizem<br>
+                        <strong>From:</strong> Turkey (Türkiye)<br>
+                        <strong>Favorite Member:</strong> Suga (Min Yoongi)<br>
+                        <strong>Passed Away:</strong> February 2023<br>
+                        <strong>Legacy:</strong> A heartbreaking symbol of human resilience and the comforting power of music, whose final words inspired massive international disaster relief efforts.</p>
+                    <img class="memorial-photo" src="../assets/Gizem.jpg" alt="An online image about Suga's earthquake-relief donation">
+                    <p class="memorial-photo-note">I couldn't find her or her account picture, so that's why I added Yoongi's donation picture, found on the internet. This is not a photo of Gizem.</p>
+
+                    <h3>🌟 Who Was Gizem?</h3>
+                    <p>Gizem was a passionate young Turkish member of the BTS ARMY. She found immense comfort, inspiration, and identity in the group's artistry. She held a particularly deep connection to <strong>Suga</strong>, connecting closely with the raw poetry, mental health advocacy, and emotional depth found throughout his solo discography and production work.</p>
+
+                    <h3>🕯️ The Incident and Her Final Words</h3>
+                    <p>On February 6, 2023, a catastrophic 7.8-magnitude earthquake struck southern Turkey and northern Syria, collapsing thousands of structures. Gizem was inside her apartment building when it fell, leaving her completely trapped beneath heavy concrete rubble in pitch-black, freezing conditions.</p>
+                    <p>While waiting for emergency services to navigate the widespread destruction, Gizem managed to maintain a cell phone connection. She used her X (formerly Twitter) account to communicate with the outside world. Instead of letting fear consume her final hours, she continually posted the lyrics of Suga’s songs.</p>
+                    <p>She explicitly shared with the community that his music was providing her with the mental resilience, light, and bravery required to endure the conditions beneath the debris. The Turkish ARMY community desperately shared her coordinates and tagged emergency services to pinpoint her location. Tragically, due to the immense scale of the disaster, rescue teams could not reach her in time, and she passed away before being recovered.</p>
+
+                    <h3>✈️ A Legacy of Relief and Compassion</h3>
+                    <p>Gizem's passing deeply affected the global fandom, turning her story into an international symbol of the tragedy. Her words sparked a massive waves of action:</p>
+                    <p><strong>Fandom Relief Drives:</strong> Global ARMY fanbases quickly organized emergency charity drives in her memory, raising thousands of dollars for NGOs providing winter blankets, food, and clean water to earthquake survivors.</p>
+                    <p><strong>Suga's Birthday Donation:</strong> On March 9, 2023, Suga personally donated 100 million won (approx. $75,900 USD) to <em>Save the Children</em> for emergency relief in Turkey and Syria, offering his deepest condolences to the victims and survivors of the disaster.</p>
+
+                    <h3>Her Last Posts and Shared Lyrics</h3>
+                    <p>While trapped in the pitch black under the concrete debris, Gizem continued to tweet as long as her phone battery lasted:</p>
+                    <p><strong>The Lyrics of "Snooze":</strong> The primary song she quoted extensively was <strong>"Snooze"</strong> (a track Suga wrote under his Agust D moniker, specifically designed to offer comfort to people going through grueling hardships). She repeated lines that translated to: <em>"Everything will be okay... When you fall, I’ll catch you, so don't worry."</em></p>
+                    <p><strong>The Comfort in the Dark:</strong> In one of her final explicit textual posts, she wrote to the community: <em>"It's freezing and I cannot move my body, but I am listening to Yoongi’s voice. His words are the only thing keeping my heart beating right now. He makes me feel brave in this dark."</em></p>
+                    <p><strong>Her Final Status Updates:</strong> Her absolute final posts shifted to urgent logistical details as her phone battery began to fail, typing out her apartment's exact address, neighborhood quadrant, and floor level in all-caps so the rescue volunteers tracking her account could direct heavy machinery to her coordinate zone.</p>
+                    <blockquote class="memorial-quote">"His music gave her light in the darkest place imaginable. Now, her memory shines as a light for all those who seek comfort in the storm."</blockquote>
+                    <p class="memorial-closing">Until we meet in another purple universe, Gizem.</p>
+                </div>
+            </article>
+            <article class="card army-memory" aria-labelledby="gaza-army-title">
+                <div class="army-memory-content">
+                    <h2 id="gaza-army-title">🇵🇸 In Loving Memory of the Anonymous Gaza Rubble ARMY</h2>
+                    <p><strong>“An Eternal Light in the Grey Dust”</strong></p>
+                    <p><strong>Location:</strong> Gaza Strip, Palestine<br>
+                        <strong>Timeline:</strong> November 2023<br>
+                        <strong>Favorite Member:</strong> V (Kim Taehyung)<br>
+                        <strong>Legacy:</strong> A heartbreaking reminder of innocent youth, whose beautiful devotion survived the wreckage of war and ignited a global wave of love and protection.</p>
+
+                    <h3>🌟 A Dream Hidden in the Darkness</h3>
+                    <p>Somewhere in the Gaza Strip, a young soul lived a life that mirrored millions of teenagers across the globe. Amidst the heavy, suffocating anxieties of living in a conflict zone, this anonymous fan found a beautiful sanctuary in the music of BTS. Her room was her safe haven, and her favorite songs were a shield against the frightening world outside.</p>
+                    <p>She held a profound love for <strong>Kim Taehyung (V)</strong>, finding comfort in his deep, soothing voice and warm persona. Like any dedicated ARMY, she carefully collected photocards and group prints, treating them as tiny, precious treasures of happiness. For her, these pieces of paper weren't just merchandise—they were anchors of hope, tangible proof of a world filled with art, color, and dreams of a peaceful tomorrow.</p>
+
+                    <h3>🕯️ The Day the Music Stopped</h3>
+                    <p>In November 2023, the unthinkable shattered that fragile sanctuary. A devastating military airstrike tore through her neighborhood, reducing her family’s residential building to a mountain of heavy, grey concrete and twisted metal. In an instant, her laughter, her dreams, and her voice were silenced forever beneath the collapsing weight.</p>
+                    <p>Days later, Palestinian journalist Ahmad Ibraheem was filming the harrowing aftermath, capturing the grim reality of a home turned into a graveyard. But as the camera panned across the bleak, ash-covered wreckage, it caught a sudden, agonizing flash of color.</p>
+                    <img class="memorial-photo" src="../assets/gaza.jpg" alt="A Taehyung photocard held up amid rubble in Gaza">
+                    <p>Buried deep in the dust lay a pristine plastic sleeve. Inside it were her treasures: <strong>the smiling faces of BTS and the distinct photocards of Taehyung.</strong></p>
+                    <p>The contrast was profoundly shattering. Surrounded by the brutal, concrete ruins of war lay the pure, innocent evidence of a young girl’s heart. She had held onto the things that brought her joy until her very last breath, leaving her small treasures behind to tell the world that she was here, she loved, and she existed.</p>
+
+                    <h3>🕊️ Honored in Privacy, Remembered in Love</h3>
+                    <p>To shield her surviving family and protect their privacy during an active war, her name, age, and face were never shared with the world. International fan coalitions like ARMY for Palestine chose to keep her identity anonymous, letting her represent the thousands of innocent children and youth lost to the violence.</p>
+                    <p>Though she never got to hold a glowing lightstick in a stadium or hear Taehyung sing live, the global community wept for her. Fandom spaces were flooded with emotional letters promising that she would never be forgotten, declaring that she had fulfilled her promise and would remain a part of the "Purple Ocean" forever, watching down from a sky where pain no longer exists.</p>
+
+                    <h3>✈️ A Wave of Love Born from Grief</h3>
+                    <p>The heartbreak of seeing those dust-covered photocards transformed the global fandom from a state of mourning into a powerful force for survival. They refused to let her story end in the rubble:</p>
+                    <p><strong>Turning Pain into Life:</strong> Driven by the memory of the anonymous fan, global ARMYs mobilized overnight, successfully raising <strong>over $100,000 USD</strong> to send emergency food, clean water, and medical kits to the families still fighting to survive inside Gaza.</p>
+                    <p><strong>Voices for the Voiceless:</strong> Fans globally stood up to demand change, organizing streaming boycotts and sending protest trucks to entertainment headquarters, fiercely asserting that the fandom would always stand on the side of peace, humanity, and the protection of innocent lives.</p>
+
+                    <h3>💜 An Unbreakable Bond Beyond Borders</h3>
+                    <p>Last but not least, this tragedy reminds us that while wars are fought between nations and borders are drawn by governments, the conflicts remain among ministers and politicians. Yet, this dust-covered treasure proves that the people themselves are bound by something far deeper—a shared love for BTS, whether it is through their healing music, the joy of a <em>Run BTS</em> episode, or the messages of self-love they leave behind. At the end of the day, we are all ARMY. Despite the borders and the conflicts dividing our countries, we share the exact same love, care, and gentleness for one another. If only those ministers were ARMY too, perhaps these wars wouldn't even be needed, because there would only be love left to spread.</p>
+
+                    <blockquote class="memorial-quote">"They took her future, but they could not take her love. Beneath the dust of a broken world, her devotion remained unbroken—a silent, beautiful song of a soul who loved light until the very end."</blockquote>
+                    <p class="memorial-closing">Until we meet in another purple universe. May your memory be honored with love and care.</p>
                 </div>
             </article>
         </section>

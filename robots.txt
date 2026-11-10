@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://d26667476-bit.github.io/BTS---Bangtan-Sonyeondan/sitemap.xml

@@ -1,0 +1,35 @@
+{
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default"
+    }
+  ],
+  "firestore": {
+    "rules": "firestore.rules"
+  },
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      ".git/**",
+      ".github/**",
+      ".firebase/**",
+      "functions/**",
+      "node_modules/**",
+      "**/node_modules/**",
+      "scripts/**",
+      "firebase.json",
+      ".firebaserc",
+      "README.md"
+    ],
+    "rewrites": [
+      {
+        "source": "/api/notify",
+        "function": {
+          "functionId": "sendSiteUpdate",
+          "region": "us-central1"
+        }
+      }
+    ]
+  }
+}

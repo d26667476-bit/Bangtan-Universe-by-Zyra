@@ -3,8 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A welcoming space for ARMY to support BTS with love, responsibility, and respect.">
-    <title>BTS Universe Dashboard</title>
+    <meta name="description" content="Explore BTS members, music achievements, voting and streaming guides, and ARMY resources in BTS Universe, created by Queen Zyra for ARMY.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://d26667476-bit.github.io/BTS---Bangtan-Sonyeondan/dashboard.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BTS Universe by Queen Zyra">
+    <meta property="og:title" content="BTS Universe by Queen Zyra | BTS ARMY Community">
+    <meta property="og:description" content="Explore BTS members, achievements, voting and streaming guides, and ARMY resources in a fan-made universe created by Queen Zyra.">
+    <meta property="og:url" content="https://d26667476-bit.github.io/BTS---Bangtan-Sonyeondan/dashboard.html">
+    <meta property="og:image" content="https://d26667476-bit.github.io/BTS---Bangtan-Sonyeondan/assets/bts%20group%20photo.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="BTS Universe by Queen Zyra | BTS ARMY Community">
+    <meta name="twitter:description" content="Explore BTS members, achievements, voting and streaming guides, and ARMY resources in a fan-made universe created by Queen Zyra.">
+    <meta name="twitter:image" content="https://d26667476-bit.github.io/BTS---Bangtan-Sonyeondan/assets/bts%20group%20photo.jpg">
+    <title>BTS Universe by Queen Zyra | BTS ARMY Community</title>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "BTS Universe by Queen Zyra",
+            "alternateName": "BTS Universe",
+            "description": "A fan-made BTS community website with member profiles, achievements, voting and streaming guides, and ARMY resources.",
+            "url": "https://d26667476-bit.github.io/BTS---Bangtan-Sonyeondan/dashboard.html"
+        }
+    </script>
     <link rel="stylesheet" href="css/style.css">
     <style>
         .dashboard-nav {
@@ -45,7 +67,7 @@
             border-radius: 0;
         }
 
-        .welcome-note h2 {
+        .welcome-note h1 {
             margin-bottom: 20px;
             color: #ffffff;
             font-size: clamp(1.5rem, 3vw, 2rem);
@@ -91,6 +113,107 @@
         .memorial-note .memorial-link {
             color: #e9d5ff;
             font-weight: 700;
+        }
+
+        .notification-item {
+            position: relative;
+        }
+
+        .notification-bell {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(192, 132, 252, 0.3);
+            border-radius: 8px;
+            padding: 8px 12px;
+            background: rgba(139, 92, 246, 0.12);
+            color: #e9d5ff;
+            font: inherit;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .notification-bell:hover,
+        .notification-bell:focus-visible {
+            border-color: rgba(192, 132, 252, 0.65);
+            color: #ffffff;
+        }
+
+        .notification-bell:focus-visible,
+        .notification-panel button:focus-visible {
+            outline: 2px solid #c084fc;
+            outline-offset: 3px;
+        }
+
+        .notification-bell svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: currentColor;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 1.8;
+        }
+
+        .notification-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #c084fc;
+            box-shadow: 0 0 10px rgba(192, 132, 252, 0.8);
+        }
+
+        .notification-dot[hidden],
+        .notification-panel[hidden] {
+            display: none;
+        }
+
+        .notification-panel {
+            position: absolute;
+            z-index: 1001;
+            top: calc(100% + 12px);
+            right: 0;
+            width: min(320px, calc(100vw - 32px));
+            border: 1px solid rgba(192, 132, 252, 0.35);
+            border-radius: 12px;
+            padding: 20px;
+            background: #100b1f;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+        }
+
+        .notification-panel h2 {
+            margin: 0 0 8px;
+            color: #ffffff;
+            font-size: 1.1rem;
+        }
+
+        .notification-panel p {
+            margin: 0 0 14px;
+            color: #cbd5e1;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .notification-panel button {
+            width: 100%;
+            border: 1px solid rgba(192, 132, 252, 0.4);
+            border-radius: 8px;
+            padding: 10px 12px;
+            background: rgba(139, 92, 246, 0.2);
+            color: #ffffff;
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .notification-panel button + button {
+            margin-top: 8px;
+        }
+
+        .notification-panel button:disabled {
+            cursor: wait;
+            opacity: 0.65;
         }
 
         .welcome-signoff {
@@ -215,6 +338,19 @@
         </div>
         <ul class="nav-links">
             <li><a href="dashboard.html" class="active" aria-current="page">Dashboard</a></li>
+            <li class="notification-item">
+                <button class="notification-bell" id="notification-bell" type="button" aria-expanded="false" aria-controls="notification-panel" aria-label="Open notification settings">
+                    <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path><path d="M10 21h4"></path></svg>
+                    <span>Updates</span>
+                    <span class="notification-dot" id="notification-dot" aria-hidden="true" hidden></span>
+                </button>
+                <section class="notification-panel" id="notification-panel" aria-labelledby="notification-panel-title" hidden>
+                    <h2 id="notification-panel-title">Website updates</h2>
+                    <p id="notification-status" role="status" aria-live="polite">Turn on notifications to hear when new sections are published.</p>
+                    <button id="enable-notifications" type="button">Enable notifications</button>
+                    <button id="disable-notifications" type="button" hidden>Turn off notifications</button>
+                </section>
+            </li>
         </ul>
     </nav>
 
@@ -224,7 +360,7 @@
         <section class="welcome-section" aria-label="Welcome to BTS Universe">
             <div class="welcome-content">
                 <article class="card welcome-note">
-                    <h2><span class="welcome-mark" aria-hidden="true">|</span> WELCOME, ARMY!</h2>
+                    <h1><span class="welcome-mark" aria-hidden="true">|</span> BTS Universe by Queen Zyra</h1>
                     <p>Welcome to BTS Universe, a space created by an ARMY, for ARMY. Here, you can explore the seven members' profiles, discover their music and achievements, follow voting and streaming updates, and find resources to help protect our seven.</p>
                     <p>This universe is built on our love for BTS, the truth we stand for, and the bond that brings ARMY together. Let's continue supporting our seven with love, unity, and respect.</p>
                     <p>Seven Members. One Universe. Infinite Stories.</p>
@@ -282,5 +418,7 @@
             </div>
         </section>
     </main>
+    <script src="firebase-config.js"></script>
+    <script type="module" src="js/site-notifications.js"></script>
 </body>
 </html>

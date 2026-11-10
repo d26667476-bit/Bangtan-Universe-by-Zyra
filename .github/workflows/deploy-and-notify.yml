@@ -1,0 +1,70 @@
+name: Deploy website and notify subscribers
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out site
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Identify changed site sections
+        id: notice
+        env:
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+        run: |
+          if git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+            git diff --name-only "$BEFORE" "$AFTER" > "$RUNNER_TEMP/changed-files.txt"
+          else
+            git ls-tree -r --name-only "$AFTER" > "$RUNNER_TEMP/changed-files.txt"
+          fi
+          node scripts/create-update-notice.mjs < "$RUNNER_TEMP/changed-files.txt"
+
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+
+      - name: Install Firebase CLI
+        run: npm install --global firebase-tools@13.29.2
+
+      - name: Deploy Firebase Hosting and Functions
+        env:
+          FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
+        run: firebase deploy --project "$FIREBASE_PROJECT_ID" --only hosting,functions,firestore:rules --non-interactive
+
+      - name: Notify subscribed visitors
+        if: steps.notice.outputs.should_notify == 'true'
+        env:
+          FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
+          NOTIFICATION_WEBHOOK_SECRET: ${{ secrets.NOTIFICATION_WEBHOOK_SECRET }}
+          NOTICE_TITLE: ${{ steps.notice.outputs.title }}
+          NOTICE_BODY: ${{ steps.notice.outputs.body }}
+          NOTICE_URL: ${{ steps.notice.outputs.url }}
+        run: |
+          payload="$(jq -n \
+            --arg title "$NOTICE_TITLE" \
+            --arg body "$NOTICE_BODY" \
+            --arg url "$NOTICE_URL" \
+            '{title: $title, body: $body, url: $url}')"
+          curl --fail-with-body --silent --show-error \
+            --request POST \
+            --header "Authorization: Bearer $NOTIFICATION_WEBHOOK_SECRET" \
+            --header "Content-Type: application/json" \
+            --data "$payload" \
+            "https://${FIREBASE_PROJECT_ID}.web.app/api/notify"
