@@ -3,7 +3,7 @@ A scalable, data-driven web platform designed to aggregate, track, and visualize
 
 ## Website update notifications
 
-The dashboard has an optional notification bell. Visitors must enable browser notifications themselves; updates are sent only to subscribed browsers. The Firebase Cloud Messaging setup stores subscription tokens in Firestore, protected by App Check and default-deny Firestore rules.
+The dashboard has an optional notification bell. Each visitor must open **Updates** and enable notifications (and allow them in their browser); notifications are sent only to subscribed browsers. To send alerts after site updates are published, finish the Firebase setup below and add all listed GitHub Actions secrets. The deployment workflow deploys the site/backend and sends a notice for changed site sections. GitHub Pages alone hosts the website but does not send push notifications. The Firebase Cloud Messaging setup stores subscription tokens in Firestore, protected by App Check and default-deny Firestore rules.
 
 ## Opening and sharing the website
 
@@ -15,7 +15,7 @@ The dashboard includes a sitemap, search metadata, and sharing previews. To requ
 
 ### One-time Firebase setup
 
-1. Create a Firebase project and register a web app. Create a Firestore database, enable Cloud Messaging, create a Web Push certificate key pair, and configure App Check for the web app with reCAPTCHA v3.
+1. Create a Firebase project and register a web app. Create a Firestore database, enable Cloud Messaging, create a Web Push certificate key pair, and configure App Check for the web app with reCAPTCHA v3. Allow the public website's HTTPS domain in the App Check configuration.
 2. Copy the web app settings, App Check site key, and Web Push certificate key into `firebase-config.js`. These are client configuration values, not service-account credentials.
 3. Generate a long random webhook secret. Set it as the `NOTIFICATION_WEBHOOK_SECRET` Firebase Functions secret with `firebase functions:secrets:set NOTIFICATION_WEBHOOK_SECRET --project YOUR_FIREBASE_PROJECT_ID`, then enter the same value as a GitHub Actions repository secret. Never commit or share this secret.
 4. Add these GitHub Actions repository secrets:

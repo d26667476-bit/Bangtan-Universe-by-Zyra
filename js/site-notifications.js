@@ -1,4 +1,4 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+import { getApps, initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
 import { initializeAppCheck, ReCaptchaV3Provider } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app-check.js";
 import { deleteToken, getMessaging, getToken, isSupported, onMessage } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-messaging.js";
 import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-functions.js";
@@ -15,6 +15,8 @@ if (bell && panel && status && enableButton && disableButton && dot) {
     let messaging;
     let registerToken;
     let removeToken;
+    let serviceWorkerRegistration;
+    const subscriptionStorageKey = "bts-universe-notifications-enabled";
 
     const setStatus = (message) => {
         status.textContent = message;
@@ -25,7 +27,12 @@ if (bell && panel && status && enableButton && disableButton && dot) {
         disableButton.hidden = !subscribed;
         dot.hidden = !subscribed;
         bell.setAttribute("aria-label", subscribed ? "Notification settings; notifications are enabled" : "Open notification settings");
+        window.localStorage.setItem(subscriptionStorageKey, String(subscribed));
     };
+
+    const wasSubscribed = window.localStorage.getItem(subscriptionStorageKey) === "true";
+    const hasGrantedPermission = "Notification" in window && Notification.permission === "granted";
+    setSubscribed(wasSubscribed && hasGrantedPermission);
 
     const isConfigured = () => {
         const requiredValues = [
@@ -40,6 +47,9 @@ if (bell && panel && status && enableButton && disableButton && dot) {
     };
 
     const initializeNotifications = async () => {
+        if (messaging) {
+            return;
+        }
         if (!isConfigured()) {
             throw new Error("The site owner still needs to finish the Firebase notification setup.");
         }
@@ -50,12 +60,15 @@ if (bell && panel && status && enableButton && disableButton && dot) {
             throw new Error("Web push notifications are not supported in this browser.");
         }
 
-        const app = initializeApp(config);
+        const app = getApps().find((item) => item.options.projectId === config.projectId) || initializeApp(config);
         initializeAppCheck(app, {
             provider: new ReCaptchaV3Provider(config.appCheckSiteKey),
             isTokenAutoRefreshEnabled: true
         });
         messaging = getMessaging(app);
+        serviceWorkerRegistration = await navigator.serviceWorker.register(
+            new URL("firebase-messaging-sw.js", document.baseURI)
+        );
 
         const functions = getFunctions(app, "us-central1");
         registerToken = httpsCallable(functions, "registerNotificationToken");
@@ -66,7 +79,18 @@ if (bell && panel && status && enableButton && disableButton && dot) {
             const message = payload.data?.body || "New content has been published.";
             setStatus(`${title}: ${message}`);
             if (Notification.permission === "granted") {
-                new Notification(title, { body: message, icon: "/assets/bts%20group%20photo.jpg" });
+                const url = new URL(
+                    (payload.data?.url || "dashboard.html").replace(/^\/+/, ""),
+                    serviceWorkerRegistration.scope
+                );
+                void serviceWorkerRegistration.showNotification(title, {
+                    body: message,
+                    icon: new URL("assets/bts%20group%20photo.jpg", serviceWorkerRegistration.scope).href,
+                    data: { url: url.href }
+                }).catch((error) => {
+                    console.error("Could not display website update notification:", error);
+                    setStatus("The update arrived, but this browser could not display its notification.");
+                });
             }
         });
     };
@@ -89,7 +113,6 @@ if (bell && panel && status && enableButton && disableButton && dot) {
                     : "Notification permission was not granted.");
             }
 
-            const serviceWorkerRegistration = await navigator.serviceWorker.register("/firebase-messaging-sw.js");
             const token = await getToken(messaging, {
                 vapidKey: config.vapidKey,
                 serviceWorkerRegistration
@@ -116,7 +139,10 @@ if (bell && panel && status && enableButton && disableButton && dot) {
             if (!messaging) {
                 await initializeNotifications();
             }
-            const token = await getToken(messaging, { vapidKey: config.vapidKey });
+            const token = await getToken(messaging, {
+                vapidKey: config.vapidKey,
+                serviceWorkerRegistration
+            });
             if (token) {
                 await removeToken({ token });
                 await deleteToken(messaging);
@@ -133,5 +159,7 @@ if (bell && panel && status && enableButton && disableButton && dot) {
 
     if (!isConfigured()) {
         setStatus("Notifications will be available after the site owner completes Firebase setup.");
+    } else if (wasSubscribed && hasGrantedPermission) {
+        setStatus("Notifications are enabled on this browser.");
     }
 }

@@ -19,7 +19,8 @@ const sectionLinks = [
 
 const changedSections = new Map();
 for (const file of files) {
-    const section = sectionLinks.find((item) => item.match(file));
+    const section = sectionLinks.find((item) => item.match(file)) ||
+        (file.endsWith(".html") ? { name: "Website pages", url: "/dashboard.html" } : undefined);
     if (section) {
         changedSections.set(section.name, section.url);
     }
