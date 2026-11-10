@@ -41,7 +41,7 @@ jobs:
           credentials_json: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
 
       - name: Install Firebase CLI
-        run: npm install --global firebase-tools@13.29.2
+        run: npm install --global firebase-tools@15.35.0
 
       - name: Deploy Firebase Hosting and Functions
         env:
